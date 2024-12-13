@@ -1,0 +1,682 @@
+@font-face {
+    font-family: 'MiFuente'; /* Nombre de la fuente para usar en tu CSS */
+    src: url('./FONTS/codec/Codec-Cold-ExtraBold-trial.ttf') format('truetype'); /* Ruta al archivo TTF */
+    font-weight: normal; /* Peso de la fuente */
+    font-style: normal;  /* Estilo de la fuente */
+  }
+  
+
+/* VARIABLES DE COLOR GLOBALES */
+:root {
+    /* Tema claro */
+    --claro-color-fondo: #ffffff;
+    --claro-color-fondo-secundario: #f4f8fc;
+    --claro-color-estrellas: #000000;
+    --claro-texto-primario: #ffffff;
+    --claro-color-encabezados: #1e8258;
+    --claro-texto-secundario: #3e4b59;
+    --claro-color-h3:#389997;
+    --claro-color-acento: #1ba1e2;
+    --claro-color-borde: #0077B5;
+    --claro-color-hover: #005e99;
+    --claro-color-boton: #0078aa;
+    --claro-color-boton-hover: #005d85;
+    --claro-color-boton-danger: #ff0000;
+    --claro-color-icono: #6c757d;
+    --claro-color-icono-hover: #0078aa;
+    --claro-color-hyf: #020f1f;
+    --claro-color-navlink: #ffffff;
+
+
+    /* Tema oscuro */
+    --oscuro-color-fondo: #020f1f;
+    --oscuro-color-fondo-secundario: #1B263B;
+    --oscuro-color-estrellas: #ffffff;
+    --oscuro-texto-primario: #ffffff;
+    --oscuro-color-encabezados: #32ff7e;
+    --oscuro-color-h3:#6df6e8;
+    --oscuro-texto-secundario: #E2F0D9;
+    --oscuro-color-acento: #5BC0EB;
+    --oscuro-color-borde: #0077B5;
+    --oscuro-color-hover: #8AC4E3;
+    --oscuro-color-boton: #0e4761;
+    --oscuro-color-boton-hover: #20e5f6;
+    --oscuro-color-boton-danger: #ff0000;
+    --oscuro-color-icono: #112444;
+    --oscuro-color-icono-hover-: #20e5f6;
+    --oscuro-color-hyf: #020f1f;
+    --oscuro-color-navlink: #ffffff;
+}
+
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Elimina cualquier fondo de todos los elementos globales */
+}
+
+/* USO DE VARIABLES SEGÚN EL TEMA */
+body.tema-claro {
+    --color-fondo: var(--claro-color-fondo);
+    --color-fondo-secundario: var(--claro-color-fondo-secundario);
+    --color-estrellas: var(--claro-color-estrellas);
+    --texto-primario: var(--claro-texto-primario);
+    --color-encabezados: var(--claro-color-encabezados);
+    --color-h3: var(--claro-color-h3);
+    --texto-secundario: var(--claro-texto-secundario);
+    --color-acento: var(--claro-color-acento);
+    --color-borde: var(--claro-color-borde);
+    --color-hover: var(--claro-color-hover);
+    --color-boton: var(--claro-color-boton);
+    --color-boton-hover: var(--claro-color-boton-hover);
+    --color-boton-danger: var(--claro-color-boton-danger);
+    --color-icono: var(--claro-color-icono);
+    --color-icono-hover: var(--claro-color-icono-hover);
+    --color-hyf: var(--claro-color-hyf);
+    --color-navlink: var(--claro-color-navlink);
+}
+
+body.tema-oscuro {
+    --color-fondo: var(--oscuro-color-fondo);
+    --color-fondo-secundario: var(--oscuro-color-fondo-secundario);
+    --color-estrellas: var(--oscuro-color-estrellas);
+    --texto-primario: var(--oscuro-texto-primario);
+    --color-encabezados: var(--oscuro-color-encabezados);
+    --color-h3: var(--oscuro-color-h3);
+    --texto-secundario: var(--oscuro-texto-secundario);
+    --color-acento: var(--oscuro-color-acento);
+    --color-borde: var(--oscuro-color-borde);   
+    --color-hover: var(--oscuro-color-hover);
+    --color-boton: var(--oscuro-color-boton);
+    --color-boton-hover: var(--oscuro-color-boton-hover);
+    --color-boton-danger: var(--oscuro-color-boton-danger);
+    --color-icono: var(--oscuro-color-icono);
+    --color-icono-hover: var(--oscuro-color-icono-hover);
+    --color-hyf: var(--oscuro-color-hyf);
+    --color-navlink: var(--oscuro-color-navlink);
+}
+
+/*----- Estilos para body ------*/
+body {
+    margin: auto;
+    padding: auto;
+    font-family: 'MiFuente', sans-serif;
+    /* font-size: 16px; */
+    /* font-weight: bold; */
+    background-color: var(--color-fondo);
+    animation: gradientMove 15s ease infinite;
+    transition: background-color 0.5s, color 0.5s;
+    overflow: default; /*Evita que el fondo se salga del viewport */
+}
+
+/* Ajustes globales */
+html,
+body {
+    margin: 0;
+}
+/* -----Estilo para el background con el movimiento----- */
+/* Contenedor de fondo animado */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-fondo);
+    /* Fondo base */
+    overflow: hidden;
+    z-index: -1;
+    /* Ubicar detrás del contenido principal */
+}
+
+/* Estilo de las estrellas */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: var(--color-estrellas);
+    border-radius: 50%;
+    /* animation: moveStars 5s linear infinite; */
+    animation: moveStars 10s linear infinite, twinkle 3s ease-in-out infinite;
+
+}
+
+/* Animación de parpadeo (ya incluida) */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Animación de movimiento de estrellas */
+@keyframes moveStars {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+
+/* ----- Contenido principal----- */
+
+/* Header */
+header{
+    color: var(--color-hyf);
+    display: block;
+}
+
+/* -----Estilos para la Navbar o menú -----*/
+.navbar {
+    /* background-color: var(--color-hyf); */
+    font-size: 18px;
+    background-color: var(--color-hyf) !important;
+
+}
+
+.navbar-brand img {
+    /* Imagen en la navbar del logo */
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: var(--color-navlink) !important;
+}
+
+.nav-link:hover {
+    color: var(--color-boton-hover) !important;
+}
+
+.navbar-toggler {
+    border-color: var(--color-boton-hover);
+}
+.material-symbols-outlined{
+    color: var(--color-navlink) !important;
+}
+
+.material-symbols-outlined:hover {
+    color: var(--color-boton-hover) !important;
+}
+.dropdown-menu {
+    background-color: var(--color-hyf);
+}
+
+.dropdown-item {
+    color: var(--color-navlink);
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-fondo);
+    color: var(--color-boton-hover);
+} 
+
+/* Contenedor para el ícono de búsqueda y barra */
+.search-container {
+    position: relative;
+}
+
+/* Barra de búsqueda */
+.search-bar {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: none; /* Oculta la barra por defecto */
+    flex-direction: row;
+    gap: 0.5rem;
+    background: var(--texto-primario);
+    padding: 0.5rem;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Barra visible (controlada por JavaScript) */
+.search-bar.show {
+    display: flex;
+}
+
+
+/* -----Estilos para el footer -----*/
+.footer {
+    background-color: var(--color-hyf);
+    color: var(--texto-primario);
+    /* padding: 20px 0; */
+    text-align: center;
+    /* position: relative; */
+    bottom: 0;
+    width: 100%;
+}
+
+/*Footer RS*/
+.social-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-boton);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    /* Para centrar el icono */
+    transition: background-color 0.3s;
+    /* display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-boton);
+    border-radius: 50%; */
+    overflow: hidden;
+    transition: background-color 0.3s;
+}
+
+.social-icon i {
+    color: var(--texto-primario);
+    font-size: 20px;
+    /* Ajusta el tamaño del ícono */
+}
+
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.social-icon:hover {
+    background-color: var(--color-boton-hover);
+}
+
+/* Colores específicos para cada red social */
+.facebook:hover {
+    background-color: var(--color-boton-hover);
+}
+
+.instagram:hover {
+    background-color: var(--color-boton-hover);
+}
+
+.footer .footer-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Sección de redes sociales */
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Estilos de los íconos de redes sociales footer */
+.social-media {
+    display: inline-block;
+    justify-content: center;
+    gap: 15px;
+}
+
+#boton-tema .material-symbols-outlined {
+    font-size: 24px;
+    color: var(--color-boton-hover);
+    /* Cambia el color según tu tema */
+    vertical-align: middle;
+    /* Alinea el ícono con el texto */
+    cursor: pointer;
+    /* Indica que es interactivo */
+}
+
+#boton-tema:hover .material-symbols-outlined {
+    color: var(--color-navlink);
+    /* Cambia el color al pasar el ratón */
+}
+
+/* TERMINA ESTILOS DE HEADER Y FOOTER */
+
+/* CONTENIDO DE LAS PÁGINAS GENERALES */
+
+h1{
+    font-family: 'Codec Pro', sans-serif;
+    font-weight: bold;
+    color: var(--color-encabezados);
+}
+h2{
+    font-family: 'Codec Pro', sans-serif;
+    color: var(--texto-secundario);
+}
+p{
+    font-family: 'Codec Pro', sans-serif;
+    color: var(--texto-primario);
+    text-align: justify;
+}
+h3{
+    font-family: 'Codec Pro', sans-serif;
+    /* font-size: 35px; */
+    color: var(--color-h3);
+}
+
+/* Página de inicio - INDEX */
+
+/*Saltos de linea*/
+hr {
+    margin: 0.2px 0;
+    border-top: 5px solid var(--color-acento);
+}
+
+/* Contenedor de la imagen */
+#petlogo {
+    width: 100%;               
+    max-width: 600px;           
+    height: auto;               
+    display: flex;              
+    justify-content: center; 
+    background-color: transparent;   
+    align-items: center;        
+    margin: 0 auto;          
+}
+
+#petlogo img {
+    width: 100%;                
+    height: auto;               
+    object-fit: contain;       
+}
+
+/* Boton Conocenos */
+button.normal {
+    padding: 10px 60px 10px 65px;
+    color: var(--texto-primario);
+    background-color: var(--color-boton);
+    border-radius: 25px;
+    cursor: pointer;
+    border: ridge;
+    background-repeat: no-repeat;
+    /* font-weight: 700; */
+    font-size: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button.normal:hover {
+    background-color: var(--color-boton-hover);
+    color: var(--color-navlink);
+    transform: scale(1.1);
+    /* box-shadow: 0 5px 15px #00c2ff;
+    border-color: #50c878; */
+}
+
+.index-h1 {
+    color: var(--texto-primario);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    font-size: 50px;
+    background-color: var(--color-borde); 
+    padding: 20px;  
+    border-radius: 10px; 
+    text-align: center;  
+}
+
+/* Diseño de la tarjeta de producto */
+.index-product-grid {
+    border: 2px solid var(--color-acento);
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.index-product-card {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    /* background-color: #050c2e; */
+    padding: 20px;
+    border-radius: 20px;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+    transition: transform 0.3s ease;
+    border-style: groove;
+    border-color: var(--color-borde);
+}
+
+.index-product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background-color: var(--texto-primario);
+    border-radius: 30px;
+    grid-row: 1; 
+    margin-top: top;
+}
+
+.index-product-card h2 {
+    font-size: 20px;
+    margin: 15px 0;
+    color: var(--texto-primario);
+}
+
+.index-product-card p {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--texto-secundario);
+    grid-row: 3; 
+    margin-top: auto;
+}
+
+.index-product-card button {
+    color: var(--texto-primario);
+    background-color: var(--color-boton);
+    border-radius: 25px;
+    cursor: pointer;
+    border: ridge;
+    background-repeat: no-repeat;
+    font-size: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+    grid-row: 4; 
+    margin-top: auto;
+}
+
+.index-product-card button:hover {
+    background-color: var(--color-boton-hover);
+}
+
+.index-product-card:hover {
+    transform: scale(1.05);
+}
+
+/* Seccion index card*/
+.index-card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 25px;
+    margin: 70px 0;
+}
+
+.index-card img {
+    width: 100%;
+    height: auto;
+}
+
+/* .index-card h3 {
+    font-size: 40px;
+    margin: 20px 0;
+    color: white;
+    text-align: center; 
+} */
+
+/* .index-card p {
+    font-size: 30px;
+    margin: 20px 0;
+    color: white;
+    text-align: justify; 
+} */
+
+
+/* Caja de Facebook*/
+.fb-comments {
+    background-color: rgb(226, 248, 250) !important; 
+    border-radius: 10px; 
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+    margin: 0 auto; 
+    width: 100%;
+}
+
+/* Termina index */
+
+/* ---------------------------------------------------------- */
+/*COMIENZA PÁGINA SOBRE NOSOTROS*/
+.container {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.card {
+    min-height: 350px;
+    /* Ajusta según tu diseño */
+}
+
+/* Efecto de hover para imágenes */
+.hover-image {
+    width: 100%;
+    /* Las imágenes se ajustan al ancho del contenedor */
+    height: 200px;
+    /* Altura fija para todas las imágenes */
+    object-fit: cover;
+    /* Asegura que las imágenes mantengan su proporción */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.hover-image:hover {
+    transform: scale(1.1);
+}
+
+
+#Acerca {
+    background-color: var(--color-fondo);
+    color: #00eeffdc;
+    text-align: center;
+}
+
+#Acerca .container {
+    padding: 20px 0px;
+}
+
+/* #Acerca h1 {
+    margin-top: 0;
+    font-size: 3.2em;
+    color: #000a63;
+} */
+
+/* #Acerca p {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: lighter;
+    text-align: left;
+} */
+
+#Acerca .carta {
+    background-position: center center;
+    background-size: cover;
+    padding: 70px;
+    margin: 20px;
+    border-radius: 25px;
+
+}
+
+/* .carta:first-child {
+    background-image: linear-gradient(0deg,
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)), url("./src/img/nosotros/mision.jpg");
+}
+
+.carta:nth-child(2) {
+    background-image: linear-gradient(0deg,
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)), url("./src/img/nosotros/vision.jpeg");
+}
+
+.carta:nth-child(3) {
+    background-image: linear-gradient(0deg,
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)), url("./src/img/nosotros/valores.jpeg");
+} */
+
+
+
+
+/* Tarjetas para los formulario */
+.card {
+    min-height: 350px;
+    border: 1px solid var(--color-acento);
+    border-radius: 8px;
+    background-color: var(--color-fondo-secundario);
+    color: var(--texto-primario);
+    transition: transform 0.3s ease;
+    justify-content: center;
+    max-width: 650px;
+    margin: 20px auto;    
+    padding: 20px;
+}
+.card:hover {
+    transform: scale(1.03);
+}
+.card-title {
+    color: var(--texto-primario);
+    font-family: 'Codec Pro', sans-serif;
+    font-weight: bold;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    /* Ubicar contenido encima del fondo */
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    color: var(--color-hyf);
+}
+/* Botones */
+.btn {
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-boton);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-boton-hover);
+}
+
+.btn-danger {
+    background-color: var(--color-boton-danger);
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: var(--color-boton-danger);
+}
+
+/*COMIENZA PÁGINA SOBRE NOSOTROS*/
