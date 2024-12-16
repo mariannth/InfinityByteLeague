@@ -3008,3 +3008,4 @@ INSERT INTO pago (fecha,descuento,tipo_de_pago,iva,folio_factura,pedido_id_pedid
 -- Select * from paises where nombre_pais = "Mexico";
 
  Select * From categoria;
+ 
