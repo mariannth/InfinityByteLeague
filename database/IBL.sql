@@ -3004,6 +3004,7 @@ INSERT INTO pago (fecha,descuento,tipo_de_pago,iva,folio_factura,pedido_id_pedid
 
 
 -- SELECT * FROM pedido;
-select * from municipios where id_municipios = 2480;
+-- select * from municipios where id_municipios = 2480;
 -- Select * from paises where nombre_pais = "Mexico";
--- Select * From categoria;
+
+ Select * From categoria;
