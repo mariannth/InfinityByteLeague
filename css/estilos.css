@@ -15,6 +15,7 @@
     --claro-texto-primario: #050505;
     --claro-color-encabezados: #1e8258;
     --claro-texto-secundario: #3e4b59;
+    --claro-texto-parrafos: #107d76;
     --claro-color-h3:#389997;
     --claro-color-acento: #1ba1e2;
     --claro-color-borde: #0077B5;
@@ -34,6 +35,7 @@
     --oscuro-color-estrellas: #ffffff;
     --oscuro-texto-primario: #ffffff;
     --oscuro-color-encabezados: #32ff7e;
+    --oscuro-texto-parrafos: #389d96;
     --oscuro-color-h3:#6df6e8;
     --oscuro-texto-secundario: #E2F0D9;
     --oscuro-color-acento: #5BC0EB;
@@ -62,6 +64,7 @@ body.tema-claro {
     --color-fondo-secundario: var(--claro-color-fondo-secundario);
     --color-estrellas: var(--claro-color-estrellas);
     --texto-primario: var(--claro-texto-primario);
+    --texto-parrafos: var(--claro-texto-parrafos);
     --color-encabezados: var(--claro-color-encabezados);
     --color-h3: var(--claro-color-h3);
     --texto-secundario: var(--claro-texto-secundario);
@@ -82,6 +85,7 @@ body.tema-oscuro {
     --color-fondo-secundario: var(--oscuro-color-fondo-secundario);
     --color-estrellas: var(--oscuro-color-estrellas);
     --texto-primario: var(--oscuro-texto-primario);
+    --texto-parrafos: var( --oscuro-texto-parrafos);
     --color-encabezados: var(--oscuro-color-encabezados);
     --color-h3: var(--oscuro-color-h3);
     --texto-secundario: var(--oscuro-texto-secundario);
@@ -345,11 +349,72 @@ header{
 /* TERMINA ESTILOS DE HEADER Y FOOTER */
 
 /* CONTENIDO DE LAS PÁGINAS GENERALES */
+/* Estilo para las tarjetas */
+.card {
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos internos se apilen verticalmente */
+    justify-content: space-between; /* Distribuye los elementos de manera uniforme */
+    height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+    border: 1px solid #ddd; /* Borde ligero para un diseño limpio */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Imagen de las tarjetas */
+.card-img-top {
+    height: 150px; /* Ajusta la altura máxima de las imágenes */
+    object-fit: cover; /* Recorta la imagen para que encaje sin deformarse */
+    border-bottom: 1px solid #ddd; /* Línea divisoria entre imagen y contenido */
+}
+
+/* Cuerpo de las tarjetas */
+.card-body {
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Títulos de las tarjetas */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+/* Precios */
+.card-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+
+/* Botones de las tarjetas */
+.card button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+    background-color: #0056b3;
+}
 
 h1{
     font-family: 'Codec Pro', sans-serif;
     font-weight: bold;
     color: var(--color-encabezados);
+}
+.index{
+    font-family: 'Codec Pro', sans-serif;
+    font-size: 25px;
+    color: var(--texto-primario);
 }
 h2{
     font-family: 'Codec Pro', sans-serif;
@@ -359,6 +424,19 @@ p{
     font-family: 'Codec Pro', sans-serif;
     color: var(--texto-primario);
     text-align: justify;
+}
+.p_pag {
+    color: var(--texto-parrafos);
+    text-align: justify;
+}
+
+.p_contactanos {
+    color: #00c2ff;
+    text-align: center;
+}
+
+.modal_title {
+    color: #000a63;
 }
 h3{
     font-family: 'Codec Pro', sans-serif;
@@ -520,6 +598,44 @@ button.normal:hover {
 .index-card img {
     width: 100%;
     height: auto;
+}
+#productsContainer {
+    display: flex;
+    flex-wrap: wrap;              /* Permitir que los elementos se ajusten en líneas */
+    gap: 20px;                    /* Espacio entre tarjetas */
+    justify-content: center;      /* Centrar las tarjetas horizontalmente */
+    align-items: flex-start;      /* Alinear las tarjetas al inicio */
+}
+/* Contenedor de productos */
+.products-grid {
+    display: flex;                /* Activar Flexbox */
+    flex-wrap: wrap;              /* Permitir que las tarjetas pasen a nuevas filas si es necesario */
+    gap: 20px;                    /* Espaciado uniforme entre tarjetas */
+    justify-content: center;      /* Centrar horizontalmente las tarjetas */
+    align-items: flex-start;      /* Alinear las tarjetas al inicio */
+    margin-top: 20px;
+}
+
+/* Tarjetas individuales */
+.products-grid .card {
+    flex: 1 1 calc(33.333% - 20px); /* Ajustar el tamaño para que ocupen un tercio del ancho disponible */
+    max-width: calc(33.333% - 20px); /* Limitar el ancho máximo al mismo valor */
+    box-sizing: border-box;         /* Incluir el padding en el tamaño total */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .products-grid .card {
+        flex: 1 1 calc(50% - 20px); /* Dos columnas en pantallas medianas */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid .card {
+        flex: 1 1 100%;             /* Una sola columna en pantallas pequeñas */
+        max-width: 100%;
+    }
 }
 
 /* Estilo para las tarjetas del carrito */
