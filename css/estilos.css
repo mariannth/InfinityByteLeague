@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'MiFuente'; /* Nombre de la fuente para usar en tu CSS */
+    font-family: 'CODECPRO'; /* Nombre de la fuente para usar en tu CSS */
     src: url('./FONTS/codec/Codec-Cold-ExtraBold-trial.ttf') format('truetype'); /* Ruta al archivo TTF */
     font-weight: normal; /* Peso de la fuente */
     font-style: normal;  /* Estilo de la fuente */
@@ -12,7 +12,7 @@
     --claro-color-fondo: #ffffff;
     --claro-color-fondo-secundario: #f4f8fc;
     --claro-color-estrellas: #000000;
-    --claro-texto-primario: #ffffff;
+    --claro-texto-primario: #050505;
     --claro-color-encabezados: #1e8258;
     --claro-texto-secundario: #3e4b59;
     --claro-color-h3:#389997;
@@ -365,6 +365,11 @@ h3{
     /* font-size: 35px; */
     color: var(--color-h3);
 }
+h4{
+    font-family: 'Codec Pro', sans-serif;
+    font-size: 18px;
+    color: var(--color-h3);
+}
 
 /* Página de inicio - INDEX */
 
@@ -427,6 +432,13 @@ button.normal:hover {
 }
 
 /* Diseño de la tarjeta de producto */
+.modal {
+    z-index: 1055;
+  }
+  .modal-backdrop {
+    z-index: 1050;
+  }
+  
 .index-product-grid {
     border: 2px solid var(--color-acento);
     border-radius: 20px;
@@ -508,6 +520,65 @@ button.normal:hover {
 .index-card img {
     width: 100%;
     height: auto;
+}
+
+/* Estilo para las tarjetas del carrito */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.cart-item-info {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.cart-item-info h5 {
+    margin: 0;
+}
+
+.cart-item-info p {
+    margin: 5px 0;
+}
+
+/* Estilo del total */
+#totalPrice {
+    font-weight: bold;
+}
+
+/* Botones de control de cantidad */
+.quantity-controls button {
+    background-color: var(--color-borde); /* Cambia este color a uno que prefieras */
+    color: var(--texto-primario);
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-controls button:hover {
+    background-color: var(--color-boton-hover); /* Color más oscuro para hover */
+}
+
+/* Ajuste visual del texto de cantidad */
+.quantity-controls span {
+    font-size: 16px;
+    /* font-weight: bold; */
+    margin: 0 10px;
+    color: var(--texto-primario);
 }
 
 /* .index-card h3 {
@@ -659,6 +730,9 @@ button.normal:hover {
 .btn {
     border-radius: 5px;
     transition: background-color 0.3s ease;
+}
+.btn-group button {
+    margin: 10px;
 }
 
 .btn-primary {

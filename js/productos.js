@@ -54,78 +54,137 @@ const products = [
     // ... Más productos aquí
 ];
 
-// Función para renderizar los productos
-function renderProducts(filter = "all") {
-    const productGrid = document.getElementById("product-grid");
-    productGrid.innerHTML = "";  // Limpiar los productos actuales
+// // Función para renderizar los productos
+// function renderProducts(filter = "all") {
+//     const productGrid = document.getElementById("product-grid");
+//     productGrid.innerHTML = "";  // Limpiar los productos actuales
 
-    const filteredProducts = filter === "all" ? products : products.filter(product => product.category === filter);
+//     const filteredProducts = filter === "all" ? products : products.filter(product => product.category === filter);
 
-    filteredProducts.forEach(product => {
-        const productCard = document.createElement("article");
-        productCard.classList.add("product-card");
+//     filteredProducts.forEach(product => {
+//         const productCard = document.createElement("article");
+//         productCard.classList.add("product-card");
 
-        productCard.innerHTML = `
-            <img src="${product.img}" alt="${product.name}">
-            <h2>${product.name}</h2>
-            <p>${product.price}</p>
-            <button onclick = "redirectToCart()"> Agregar al carrito</button>
-            <button onclick = "editProductAndRedirect(${product.id})">Editar</button>
-             <button onclick = "deleteProduct(${product.id})">Borrar</button>
-        `;
+//         productCard.innerHTML = `
+//             <img src="${product.img}" alt="${product.name}">
+//             <h2>${product.name}</h2>
+//             <p>${product.price}</p>
+//             <button onclick = "redirectToCart()"> Agregar al carrito</button>
+//             <button onclick = "editProductAndRedirect(${product.id})">Editar</button>
+//              <button onclick = "deleteProduct(${product.id})">Borrar</button>
+//         `;
 
-        productGrid.appendChild(productCard);
+//         productGrid.appendChild(productCard);
+//     });
+// }
+
+// // Cargar productos al cargar la página
+// window.onload = () => {
+//     renderProducts();
+// };
+
+// // Filtrar productos cuando cambie el select
+// document.getElementById("category-filter").addEventListener("change", (event) => {
+//     renderProducts(event.target.value);
+// });
+
+
+// //Modificar productos
+// function updateProduct (id, newName, newPrice, newCategory, newImg){
+//     const product =products.find (p => p.id === id); //Busca el producto por id
+//     if (product){
+//         product.name = newName || product.name; //Si cambia el nombre se actualiza 
+//         product.price = newPrice || product.price; // Si cambia el precio debe actualizar
+//         product.category = newCategory || product.category; // Actualiza la categoría 
+//         product.img = newImg || product.img; // Por si cambia la imagen
+
+//     }
+
+//     renderProducts(); //renderiza de nuevo los productos
+// }
+// function editProductAndRedirect(productId) {
+//     window.location.href = `registroProducto.html?id=${productId}`;
+//   }
+// //Eliminar un producto
+
+// function deleteProduct(id){
+//     const productIndex = products.filter (p => p.id !== undefined).findIndex(p => p.id === id); //busca el índice del producto
+//     if (productIndex !== -1){
+//         products.splice(productIndex, 1); //elimina el producto del arreglo 
+//     } else{
+//         console.error("Producto no encontrado con id", id); //verificar que el id esté en el arreglo
+//     }
+
+//     renderProducts(); // renderiza otra vez los productos
+// }
+
+// //Eliminar todos los productos
+
+// function clearAllProducts(){
+//     products.length = 0; // vacía el arreglo
+//     renderProducts(); //renderiza otra vez 
+// }
+
+// // Agregar al carrito
+// function redirectToCart() {
+//     window.location.href = 'carrito.html';
+//   }
+
+// Función para cargar las tarjetas de productos según la categoría seleccionada
+function filterProducts(category) {
+    const filteredProducts = products.filter(
+      (product) => product.category === category
+    );
+    displayProducts(filteredProducts);
+  }
+  
+  // Función para mostrar las tarjetas de productos
+  function displayProducts(productsToDisplay) {
+    const container = document.getElementById("contenido");
+    container.innerHTML = ""; // Limpiar la sección de productos
+  
+    productsToDisplay.forEach((product) => {
+      const card = `
+              <div class="col-md-4 mb-4" id="productsContainer">
+                  <div class="card">
+                      <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                      <div class="card-body">
+                          <h5 class="card-title">${product.name}</h5>
+                          <p class="card-text">${product.description}</p>
+                          <p class="card-text">$${product.price}</p>
+                          <button class="btn btn-outline-primary" onclick="addToCart('${product.name}')">Añadir al carrito</button>
+                      </div>
+                  </div>
+              </div>
+          `;
+      container.innerHTML += card;
     });
-}
-
-// Cargar productos al cargar la página
-window.onload = () => {
-    renderProducts();
-};
-
-// Filtrar productos cuando cambie el select
-document.getElementById("category-filter").addEventListener("change", (event) => {
-    renderProducts(event.target.value);
-});
-
-
-//Modificar productos
-function updateProduct (id, newName, newPrice, newCategory, newImg){
-    const product =products.find (p => p.id === id); //Busca el producto por id
-    if (product){
-        product.name = newName || product.name; //Si cambia el nombre se actualiza 
-        product.price = newPrice || product.price; // Si cambia el precio debe actualizar
-        product.category = newCategory || product.category; // Actualiza la categoría 
-        product.img = newImg || product.img; // Por si cambia la imagen
-
-    }
-
-    renderProducts(); //renderiza de nuevo los productos
-}
-function editProductAndRedirect(productId) {
-    window.location.href = `registroProducto.html?id=${productId}`;
   }
-//Eliminar un producto
-
-function deleteProduct(id){
-    const productIndex = products.filter (p => p.id !== undefined).findIndex(p => p.id === id); //busca el índice del producto
-    if (productIndex !== -1){
-        products.splice(productIndex, 1); //elimina el producto del arreglo 
-    } else{
-        console.error("Producto no encontrado con id", id); //verificar que el id esté en el arreglo
+  
+  // Función para manejar el evento de agregar al carrito
+  function addToCart(productName) {
+    // Encontrar el producto basado en el nombre
+    const product = products.find((item) => item.name === productName);
+  
+    // Obtener el carrito del localStorage o un carrito vacío si no existe
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+    // Verificar si el producto ya está en el carrito
+    const existingProductIndex = cart.findIndex((item) => item.id === product.id);
+  
+    // Si el producto ya está en el carrito, incrementar su cantidad
+    if (existingProductIndex !== -1) {
+      cart[existingProductIndex].quantity += 1;
+    } else {
+      // Si el producto no está en el carrito, agregarlo con cantidad 1
+      cart.push({ ...product, quantity: 1 });
     }
-
-    renderProducts(); // renderiza otra vez los productos
-}
-
-//Eliminar todos los productos
-
-function clearAllProducts(){
-    products.length = 0; // vacía el arreglo
-    renderProducts(); //renderiza otra vez 
-}
-
-// Agregar al carrito
-function redirectToCart() {
-    window.location.href = 'carrito.html';
+  
+    // Guardar el carrito actualizado en el localStorage
+    localStorage.setItem("cart", JSON.stringify(cart));
+  
+    // Mostrar un modal de éxito
+    const cartModal = new bootstrap.Modal(document.getElementById("cartModal"));
+    cartModal.show();
   }
+  

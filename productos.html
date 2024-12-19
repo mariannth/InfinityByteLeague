@@ -5,87 +5,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos - IBL</title>
+    <!-- Icono de pestaña -->
+    <link rel="icon" type="image/jpg" href="./src/img/Logo/favicon.jpg">
     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- iconos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"
-        integrity="sha512-K6I4HO1D+E1SVzzBc7C8uV35HlXk5sZfztSzX3LTGtF2/B0IUy5yKZ9zT/8GrdyxEs5XHP1yI9fRQafZfiFZw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- CSS Personalizado -->
-    <link rel="stylesheet" href="./css/styles.css">
-    <!-- <link rel="stylesheet" href="./css/productos.css"> -->
+    <link rel="stylesheet" href="./css/estilos.css">
 </head>
 
-<body class="bg-light d-flex flex-column min-vh-100">
+<body class="tema-oscuro">
     <div id="header"></div>
+
     <main class="flex-grow-1">
         <div class="background-animation"></div>
         <div class="content">
             <h1>Productos</h1>
             <section class="filters">
-                <h3>Filtrar por Categoría</h3>
-                <select id="category-filter">
-                    <option value="all">Todas las Categorías</option>
-                    <option value="Audifonos">Audifonos</option>
-                    <option value="Altavoces">Altavoces</option>
-                    <option value="Bocinas">Bocinas</option>
-                    <option value="Cables">Cables </option>
-                    <option value="Webcam">Cámara Web</option>
-                    <option value="Computadoras">Computadoras</option>
-                    <option value="Gafas">Gafas de realidad virtual </option>
-                    <option value="Laptops">Laptops</option>
-                    <option value="Mouse">Mouse</option>
-                    <option value="Smartphones">Smart phones</option>
-                    <option value="Smartwatch">Smart watch y VR</option>
-<<<<<<< HEAD
-                    <option value="Teclados">Teclados </option>
-                    <option value="Tablets">Tablets </option>
-=======
-                    <option value="Tablets">Tablets </option>
-                    <option value="Teclados">Teclados </option>                    
->>>>>>> master
-                    
-                </select>
-            </section>
-                <section class="product-grid" id="product-grid">
-                    <!-- Los productos se agregarán aquí mediante JavaScript -->
-                </section>
-                <section>
-                <button class="btn btn-primary" onclick="clearAllProducts()">Eliminar todos los productos</button>
-                    <!-- <button class="btn btn-primary" id="add-product-button">
-                        <a href="registroProducto.html">Agregar productos</a>
-                    </button>            -->
-            </section>
-        
-            <section class="product-grid" id="product-grid">
-                <!-- Los productos se agregarán aquí mediante JavaScript -->
-            </section>
-        </div>
+                <h2>Filtrar por Categoría</h2>
 
-        <br><br>
+                <!-- Filtro de Categorías -->
+                <section class="container my-5">
+                    <div class="row text-center">
+                        <div class="col-4 col-md-2 mb-3">
+                            <button class="btn btn-primary w-100" onclick="filterProducts('all')">Todas las
+                                Categorías</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <button class="btn btn-primary w-100"
+                                onclick="filterProducts('Audifonos')">Audifonos</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <button class="btn btn-primary w-100"
+                                onclick="filterProducts('Altavoces')">Altavoces</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <button class="btn btn-primary w-100" onclick="filterProducts('Bocinas')">Bocinas</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <button class="btn btn-primary w-100" onclick="filterProducts('Cables')">Cables</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-3">
+                            <button class="btn btn-primary w-100" onclick="filterProducts('Webcam')">Cámara</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-4">
+                            <button class="btn btn-primary w-100"
+                                onclick="filterProducts('Computadoras')">Computadoras</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-4">
+                            <button class="btn btn-primary w-100" onclick="filterProducts('Gafas')">Gafas</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-4">
+                            <button class="btn btn-primary w-100" onclick="filterProducts('Laptops')">Laptops</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-4">
+                            <button class="btn btn-primary w-100" onclick="filterProducts('Mouse')">Mouse</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-4">
+                            <button class="btn btn-primary w-100"
+                                onclick="filterProducts('Smartphones')">Smartphones</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-4">
+                            <button class="btn btn-primary w-100"
+                                onclick="filterProducts('Smartwatch')">Smartwatch</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-4">
+                            <button class="btn btn-primary w-100" onclick="filterProducts('Tablets')">Tablets</button>
+                        </div>
+                        <div class="col-4 col-md-2 mb-4">
+                            <button class="btn btn-primary w-100" onclick="filterProducts('Teclados')">Teclados</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Productos -->
+                <section class="container my-5" id="productsContainer">
+                    <h2 class="text-center">Productos</h2>
+                    <div class="row" id="productCards">
+                        <!-- Aquí se cargarán las tarjetas de productos dinámicamente -->
+                    </div>
+                </section>
+
+                <!-- Modal de confirmación -->
+                <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="cartModalLabel">Producto agregado al carrito</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                El producto ha sido agregado correctamente al carrito.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Seguir
+                                    comprando</button>
+                                <a href="carrito.html" class="btn btn-success">Ir al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <br><br>
     </main>
 
-    <!--Footer-->
+
+    <!-- Contenedor para el footer -->
     <div id="footer"></div>
-    <script>
 
-        function loadComponent(id, file) {
-            fetch(file)
-                .then(response => response.text())
-                .then(data => document.getElementById(id).innerHTML = data)
-                .catch(error => console.error('Error loading component:', error));
-        }
-
-        loadComponent("header", "./components/header.html");
-        loadComponent("footer", "./components/footer.html");
-    </script>
-    <script src="./js/script.js"></script>
-    <script src="./js/productos.js"></script>
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <script src="./js/plantilla.js"></script>
+    <script src="./js/products.js"></script>
 </body>
 
 </html>
