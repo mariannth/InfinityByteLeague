@@ -4,32 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contáctanos - IBL</title>
+  <title> - IBL</title>
+  <!-- Icono de pestaña -->
+  <link rel="icon" type="image/jpg" href="./src/img/Logo/favicon.jpg">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Google Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- iconos -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
   <!-- CSS Personalizado -->
-  <link rel="stylesheet" href="./css/styles.css">
-  <!--Llamar libreria de Emailjs-->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script type="text/javascript"></script>
+  <link rel="stylesheet" href="./css/estilos.css">
 </head>
 
-<body class="bg-light d-flex flex-column min-vh-100">
+<body class="tema-oscuro">
   <div id="header"></div>
+
   <main class="flex-grow-1">
     <div class="background-animation"></div>
     <div class="content">
-      <h2 id="contactanos">¡Contáctanos, somos tu mejor opción!</h2>
-      <div class="card-body" style="justify-content: center;">
-        <p class="p_contactanos" id="dejanosDatos">| Déjanos tus datos, nosotros te contactaremos</p>
-        <br>
-      </div>
+      <h1>¡Contáctanos, somos tu mejor opción!</h1>
+      <h2>Déjanos tus datos, nosotros te contactaremos</h2>
       <br>
-      <div class="card_contact">
+      <div class="card">
         <div class="card-body">
           <div id="contact_form" class="col-md-12">
             <div class="row">
@@ -73,8 +72,8 @@
                 </div>
               </div>
             </div>
-              <label class="form-label">*Elige la opción que más se acerque a tu objetivo</label>
-              <div class="row" id="service"></div>
+            <label class="form-label">*Elige la opción que más se acerque a tu objetivo</label>
+            <div class="row" id="service">
               <select class="form-select" name="service">
                 <option value="Dudas con tu pedido">Dudas con tu pedido</option>
                 <option value="Pedido Especial/Mayoreo">Pedido Especial/Mayoreo</option>
@@ -82,6 +81,7 @@
                 <option value="Quejas">Quejas</option>
               </select>
             </div>
+            <br>
             <div class="row">
               <div class="col-12 mb-3">
                 <label for="message" class="form-label">Mensaje </label> <label style="color: crimson;"> *</label>
@@ -105,84 +105,64 @@
           </div>
           <div class="row">
             <div class="col-20 mb-3">
-              <button type="click" class="btn btn-primary p-3 w-50 fw-bold fs-10" id="enviarMensaje">Enviar</button>
+              <button type="submit" class="btn btn-primary" id="enviarMensaje">Enviar</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <section style="display:flexbox" class="content" id="mapaIBL" ><!--style="position:absolute; left: 800px; margin-top: 80px;""-->
-      <p class="form-label">¡Encuéntranos en nuestra sucursal!</p><!--padding-right: 300px;-->
-      <br>
-      <div class="content" style="display:flex">
-        <br>
-        <iframe id= mapitaContact src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d572.4644463658462!2d-99.22227201474242!3d18.77019653930634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cdd827e4884313%3A0x71afcaa1a0d1aae3!2sC.%20Truenos%2051%2C%20San%20Miguel%20de%20La%20Uni%C3%B3n%2C%2062790%20Chiconcuac%2C%20Mor.!5e0!3m2!1sen!2smx!4v1732153628707!5m2!1sen!2smx" 
-         referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-      </div>
-    </section>  
 
-    </div>
-    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="alertModalLabel">Atención</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Aquí se actualizará dinámicamente el mensaje -->
-            <p id="modalMessage"></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+      <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="alertModalLabel">Atención</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Aquí se actualizará dinámicamente el mensaje -->
+              <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
-    <br><br>
+
+      <br><br>
   </main>
 
-  <!--Footer-->
+
+  <!-- Contenedor para el footer -->
   <div id="footer"></div>
-  <script>
 
-    function loadComponent(id, file) {
-      fetch(file)
-        .then(response => response.text())
-        .then(data => document.getElementById(id).innerHTML = data)
-        .catch(error => console.error('Error loading component:', error));
-    }
-
-    loadComponent("header", "./components/header.html");
-    loadComponent("footer", "./components/footer.html");
-  </script>
-
-  <script defer src="./js/contactanos.js"></script>
-<!-- Modal de Alerta -->
-<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="alertModalLabel">Atención</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p id="modalMessage"></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script src="./js/plantilla.js"></script>
+  <script src="./js/contactanos.js"></script>
+  <!-- Modal de Alerta -->
+  <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="alertModalLabel">Atención</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="modalMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-  
-  <script src="./js/script.js"></script>
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  
+
 
 </body>
 

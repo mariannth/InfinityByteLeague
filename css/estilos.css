@@ -252,7 +252,7 @@ header{
 /* -----Estilos para el footer -----*/
 .footer {
     background-color: var(--color-hyf);
-    color: var(--texto-primario);
+    color: #ffffff;
     /* padding: 20px 0; */
     text-align: center;
     /* position: relative; */
@@ -314,6 +314,7 @@ header{
 .footer p {
     font-size: 16px;
     margin-bottom: 20px;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -347,8 +348,30 @@ header{
 }
 
 /* TERMINA ESTILOS DE HEADER Y FOOTER */
+.container_login {
+    background-color: #495057;
+    /* background: rgb(255, 255, 255); */
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 10px rgb(62, 175, 240);
+}
+.container {
+    background: #010523;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
 /* CONTENIDO DE LAS PÁGINAS GENERALES */
+.container {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.card {
+    min-height: 350px;
+    /* Ajusta según tu diseño */
+}
 /* Estilo para las tarjetas */
 .card {
     display: flex;
