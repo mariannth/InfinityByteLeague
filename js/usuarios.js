@@ -1,3 +1,7 @@
+//-------------------------------------------------------------
+//     Aplicando la conexión de la API con el front
+//-------------------------------------------------------------
+
 // Validaciones
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -9,29 +13,17 @@ function validatePhone(phone) {
   return phoneRegex.test(phone);
 }
 
-// Mostrar alertas de Bootstrap
-//   function showAlert(message, type, form) {
-//     const alertPlaceholder = document.createElement("div");
-//     alertPlaceholder.innerHTML = `
-//       <div class="alert alert-${type} alert-dismissible fade show" role="alert">
-//         ${message}
-//         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-//       </div>
-//     `;
-//     form.prepend(alertPlaceholder);
-
-//     setTimeout(() => {
-//       alertPlaceholder.remove();
-//     }, 3000);
-//   }
-
 // Mostrar modal de alerta
 function showAlert(message, type, form) {
   const modal = new bootstrap.Modal(document.getElementById("alertModal"));
   const modalMessageBody = document.getElementById("modalMessageBody");
 
   // Establecer el mensaje
-  modalMessageBody.innerHTML = message;
+  modalMessageBody.innerHTML = `
+    <div class="alert alert-${type}" role="alert">
+      ${message}
+    </div>
+  `;
 
   // Mostrar el modal
   modal.show();
@@ -85,25 +77,35 @@ function handleRegister(event) {
     telefono,
   };
 
-  // Obtener usuarios existentes en LocalStorage
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  // Hacer la solicitud POST al backend
+  fetch("http://localhost:8080/api/v1/new-usuario", { // URL corregida al backend
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newUser),
+  })
+  .then(response => {
+    if (!response.ok) {
+      if (response.status === 409) {
+        showAlert("Este correo ya está registrado.", "danger", formRegister);
+      } else {
+        showAlert("Hubo un error en el registro. Inténtalo de nuevo.", "danger", formRegister);
+      }
+      throw new Error('Error en el registro');
+    }
+    return response.json();
+  })
+  .then(data => {
+    showAlert("Registro exitoso. Redirigiendo al login...", "success", formRegister);
 
-  // Verificar si el correo ya está registrado
-  if (users.some(user => user.email === email)) {
-    showAlert("Este correo ya está registrado.", "danger", formRegister);
-    return;
-  }
-
-  // Agregar el nuevo usuario al arreglo
-  users.push(newUser);
-
-  // Almacenar el arreglo actualizado en LocalStorage
-  localStorage.setItem("users", JSON.stringify(users));
-
-  showAlert("Registro exitoso. Redirigiendo al login...", "success", formRegister);
-
-  // Redirigir al login después de 1.5 segundos
-  setTimeout(() => (window.location.href = "login.html"), 1500);
+    // Redirigir al login después de 1.5 segundos
+    setTimeout(() => (window.location.href = "login.html"), 1500);
+  })
+  .catch(error => {
+    console.error("Error en el registro:", error);
+    showAlert("Hubo un error inesperado. Inténtalo de nuevo.", "danger", formRegister);
+  });
 }
 
 // Manejo del Login
@@ -118,22 +120,28 @@ function handleLogin(event) {
     return;
   }
 
-  // Obtener usuarios registrados desde LocalStorage
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-
-  // Verificar si el usuario existe y la contraseña es correcta
-  const foundUser = users.find(user => user.email === email && user.password === password);
-
-  if (!foundUser) {
-    showAlert("Correo electrónico o contraseña incorrectos.", "danger", formLogin);
-    return;
-  }
-
-  // Inicio de sesión exitoso
-  showAlert(`Bienvenido, ${foundUser.nombre}! Redirigiendo...`, "success", formLogin);
-
-  // Redirigir al inicio después de 1.5 segundos
-  setTimeout(() => (window.location.href = "index.html"), 1500);
+  // Hacer la solicitud POST al backend para login
+  fetch("http://localhost:8080/api/v1/usuario/email/" + email) // Endpoint para verificar usuario por email
+    .then(response => {
+      if (!response.ok) {
+        showAlert("Correo electrónico no encontrado.", "danger", formLogin);
+        throw new Error('Usuario no encontrado');
+      }
+      return response.json();
+    })
+    .then(user => {
+      if (user.password === password) {
+        showAlert(`Bienvenido, ${user.nombre}! Redirigiendo...`, "success", formLogin);
+        // Redirigir al inicio después de 1.5 segundos
+        setTimeout(() => (window.location.href = "index.html"), 1500);
+      } else {
+        showAlert("Contraseña incorrecta.", "danger", formLogin);
+      }
+    })
+    .catch(error => {
+      console.error("Error en el login:", error);
+      showAlert("Hubo un error al intentar iniciar sesión. Inténtalo de nuevo.", "danger", formLogin);
+    });
 }
 
 // Asociar eventos a los formularios
