@@ -64,31 +64,31 @@ function loadComponent(id, file, callback) {
 
 
 
-// document.addEventListener('keydown', (event) => {
-//   if (event.key === "F12" || 
-//       (event.ctrlKey && event.shiftKey && event.key === "I") || 
-//       (event.ctrlKey && event.shiftKey && event.key === "j") || 
-//       (event.ctrlKey && event.key === "u")) {
-//       event.preventDefault();
-//       //alert("Herramientas de desarrollo deshabilitadas.");
-//   }
-// });
+document.addEventListener('keydown', (event) => {
+   if (event.key === "F12" || 
+       (event.ctrlKey && event.shiftKey && event.key === "I") || 
+       (event.ctrlKey && event.shiftKey && event.key === "j") || 
+       (event.ctrlKey && event.key === "u")) {
+       event.preventDefault();
+       //alert("Herramientas de desarrollo deshabilitadas.");
+   }
+ });
 
-// document.addEventListener("contextmenu", (event) => {
-//   event.preventDefault();
-//   //alert("Clic derecho deshabilitado.");
-// });
+ document.addEventListener("contextmenu", (event) => {
+   event.preventDefault();
+   //alert("Clic derecho deshabilitado.");
+ });
 
-// document.oncontextmenu = function(){return false;}
+ document.oncontextmenu = function(){return false;}
 
 // Captura el formulario y añade un evento 'submit'
-// document.getElementById("search-form").addEventListener("submit", function (e) {
-//   e.preventDefault(); // Evita el envío normal del formulario
-//   const searchInput = document.getElementById("search-input").value.trim();
-//   if (searchInput) {
-//       // Redirige a productos.html con la palabra clave en la URL
-//       window.location.href = `productos.html?search=${encodeURIComponent(searchInput)}`;
-//   }
-// });
+ document.getElementById("search-form").addEventListener("submit", function (e) {
+   e.preventDefault(); // Evita el envío normal del formulario
+   const searchInput = document.getElementById("search-input").value.trim();
+   if (searchInput) {
+       // Redirige a productos.html con la palabra clave en la URL
+       window.location.href = `productos.html?search=${encodeURIComponent(searchInput)}`;
+   }
+ });
 
 
